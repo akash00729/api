@@ -5,9 +5,8 @@ const { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } = require('@googl
 const app = express();
 const PORT = process.env.PORT || 3000;
 const MODEL_NAME = "gemini-1.5-pro-latest";
-const API_KEY = "AIzaSyAEFeOH6N9455YvcsrAbedD8hzK78IZ1H4";
-const staticPrompt = 'Summarize and extract relevant data from a conversation between a sales executive and a client. Provide the summary in one line and include all relevant details in each point. Combine the summary and relevant data into one line for quick review. Summarize the conversation into 5 key points, including a one-line summary for each, for the marketing head of the department. Can you create a streamlined format for review that includes all necessary information in a concise manner?';
-
+const API_KEY = "AIzaSyB85ckrcDd8vRVD8VT8e6ggvOhF0Asko4Q";
+const staticPrompt = "Analyze the provided demo summary and extract the following key detailsClient HS Code/Product: Identify and provide the HS code or product name mentioned by the client.Client Role: Determine whether the client is acting as a buyer or a supplier.Client Persona: Describe the client’s role or persona in the context of the conversation.Client Interested Market: Identify the market or markets the client is interested in.Client Country of Interest: Specify the country or countries the client is focused on.Client Objective: Summarize the client’s main objectives or goals discussed in the demo.Ensure the extracted information is clear and accurately reflects the details provided in the demo summary."
 app.use(bodyParser.json());
 
 async function runChat(data) {
