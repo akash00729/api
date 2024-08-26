@@ -82,8 +82,23 @@ app.post('/user-summary', async (req, res) => {
     return res.status(400).json({ error: 'Prompt is required' });
   }
 
-  const staticPrompt = "Generate a detailed summary of the key points discussed in the following demo transcript. The summary should be three lines long, starting with 'Summary of our demo,' followed by five bullet points that specifically highlight the features of Volza that were demonstrated, how those features address the client's needs, and any specific actions or decisions made. Address the client as 'you' and the salesperson as 'we.' Ensure that the response includes details about the specific Volza features shown, how they can be used, and their relevance to the client's business objectives. Avoid using the word 'client' in the response. Instead, refer to the client directly as 'you' or by their name."
-  
+  const staticPrompt = `
+Analyze the JSON data provided, focusing on the "summary" field within each object. Create a detailed yet concise summary titled "Summary of our Demo," ensuring that all key points discussed in the JSON are accurately captured. The summary should include:
+
+Volza Features Demonstrated: Briefly highlight each Volza feature shown during the demo, focusing on how they address the user's specific needs.
+
+User's Needs and Solutions: Summarize the user's primary needs or challenges and explain how the demonstrated features align with and provide solutions.
+
+Countries of Interest: Mention any countries of interest discussed, particularly in relation to competitors, suppliers, or sourcing strategies.
+
+Key Actions and Next Steps: Recap the main actions, decisions, or next steps agreed upon during the demo.
+
+Strategic Insights: Include any relevant competitor analysis or strategic insights discussed, but keep this section brief and focused.
+
+Important: Avoid using the word 'client' in the response. Instead, refer to the client directly as 'you' or by their name.
+
+
+`  
   try {
     const response = await runChat(prompt, staticPrompt);
     res.json({ response });
